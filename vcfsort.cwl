@@ -1,16 +1,28 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-    DockerRequirement:
-        dockerPull: vcfsort
+label: Sort a VCF file
 
-baseCommand: [vcf-sort, -c]
+requirements:
+  - class: DockerRequirement
+    dockerImageId: opengenomics/vcftools
+
+baseCommand: [vcf-sort, "-c"]
 
 inputs:
-    vcf:
-        type: File
-stdin: $(inputs.vcf.path)
-stdout: sorted.vcf
+  vcf:
+    type: File
+    inputBinding:
+      position: 1
+
+  output_name:
+    default: sorted.vcf
+    type: string
+
+stdout: $(inputs.output_name)
+
 outputs:
-    outvcf: stdout
+  output_vcf:
+    type: File
+    outputBinding:
+      glob: $(inputs.output_name)

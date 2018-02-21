@@ -5,7 +5,7 @@ label: Sort a VCF file
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: opengenomics/vcftools
+    dockerPull: opengenomics/vcftools-tools:latest
 
 baseCommand: [vcf-sort, "-c"]
 

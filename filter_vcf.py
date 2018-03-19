@@ -6,9 +6,10 @@ import vcf
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--tumor", default="PRIMARY")
+    parser.add_argument("--tumor", default="TUMOR")
     parser.add_argument("--normal", default="NORMAL")
-    parser.add_argument("--ad", type=int, default=None)
+    parser.add_argument("--no-ad", action="store_true")
+    parser.add_argument("--cutoff", type=int, default=None)
     parser.add_argument("vcf")
     parser.add_argument("out")
 
@@ -19,11 +20,16 @@ if __name__ == "__main__":
 
     for record in vcf_reader:
         keep = True
-        if args.ad is not None:
+        if args.cutoff is not None:
             for call in record.samples:
-                if call.sample == args.tumor:
+                if call.sample == args.tumor and args.no_ad == False:
                     for n, d in call.data._asdict().items():
-                        if n == "AD" and d[1] < args.ad:
+                        if n == "AD" and d[1] < args.cutoff:
+                            keep = False
+                elif call.sample == args.tumor and args.no_ad == True:
+                    for n, d in record.INFO.items():
+                        if n == "T_DP" and d < args.cutoff:
                             keep = False
         if keep:
             vcf_writer.write_record(record)
+

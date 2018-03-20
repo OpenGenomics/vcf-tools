@@ -10,6 +10,11 @@ requirements:
 baseCommand: [python, /opt/filter_vcf.py]
 
 inputs:
+  no_ad:
+    type: boolean
+    default: false
+    inputBinding:
+      prefix: --no-ad
 
   output_name:
     type: string
@@ -17,10 +22,10 @@ inputs:
     inputBinding:
       position: 3
 
-  ad:
+  cutoff:
     type: int?
     inputBinding:
-      prefix: --ad
+      prefix: --cutoff
 
   vcf:
     type: File

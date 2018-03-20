@@ -3,7 +3,6 @@
 import argparse
 import vcf
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--tumor", default="TUMOR")
@@ -32,4 +31,3 @@ if __name__ == "__main__":
                             keep = False
         if keep:
             vcf_writer.write_record(record)
-

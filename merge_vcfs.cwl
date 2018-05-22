@@ -9,14 +9,14 @@ requirements:
 
 baseCommand: [python, /opt/merge_vcfs.py]
 
-stdout: stdout
-stderr: stderr
+#stdout: stdout
+#stderr: stderr
 
 inputs:
 
   output_name:
     type: string
-    default: output.vcf
+    default: merged.vcf
     inputBinding:
       prefix: --output
 

@@ -8,3 +8,4 @@ ADD hgsc_vcf /opt/hgsc_vcf
 RUN pip install pyvcf
 ADD merge_vcfs.py /opt/merge_vcfs.py
 ADD filter_vcf.py /opt/filter_vcf.py
+

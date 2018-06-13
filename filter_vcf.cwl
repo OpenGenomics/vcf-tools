@@ -32,6 +32,18 @@ inputs:
     inputBinding:
       position: 2
 
+  tumorID:
+    type: string?
+    default: TUMOR
+    inputBinding:
+      prefix: --tumor
+
+  normalID:
+    type: string?
+    default: NORMAL
+    inputBinding: 
+      prefix: --normal
+
 outputs:
   output_vcf:
     type: File

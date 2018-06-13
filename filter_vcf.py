@@ -23,11 +23,11 @@ if __name__ == "__main__":
             for call in record.samples:
                 if call.sample == args.tumor and args.no_ad == False:
                     for n, d in call.data._asdict().items():
-                        if n == "AD" and d[1] < args.cutoff:
+                        if n == "AD" and int(d[1]) < args.cutoff:
                             keep = False
                 elif call.sample == args.tumor and args.no_ad == True:
                     for n, d in record.INFO.items():
-                        if n == "T_DP" and d < args.cutoff:
+                        if n == "T_DP" and int(d) < args.cutoff:
                             keep = False
         if keep:
             vcf_writer.write_record(record)

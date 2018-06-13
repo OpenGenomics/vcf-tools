@@ -1,2 +1,3 @@
-*.pyc
-*~
+*.vcf
+cwltest.sh
+cwltest.sbtch

@@ -5,18 +5,18 @@ label: Merge VCFs
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: opengenomics/vcftools
+    dockerPull: opengenomics/vcftools-tools:latest
 
 baseCommand: [python, /opt/merge_vcfs.py]
 
-stdout: stdout
-stderr: stderr
+#stdout: stdout
+#stderr: stderr
 
 inputs:
 
   output_name:
     type: string
-    default: output.vcf
+    default: merged.vcf
     inputBinding:
       prefix: --output
 
@@ -34,4 +34,4 @@ outputs:
   output_vcf:
     type: File
     outputBinding:
-      glob: output.vcf
+      glob: $(inputs.output_name)

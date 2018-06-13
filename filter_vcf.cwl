@@ -5,11 +5,16 @@ label: Merge VCFs
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: opengenomics/vcftools
+    dockerPull: opengenomics/vcftools-tools:latest
 
 baseCommand: [python, /opt/filter_vcf.py]
 
 inputs:
+  no_ad:
+    type: boolean
+    default: false
+    inputBinding:
+      prefix: --no-ad
 
   output_name:
     type: string
@@ -17,18 +22,30 @@ inputs:
     inputBinding:
       position: 3
 
-  ad:
+  cutoff:
     type: int?
     inputBinding:
-      prefix: --ad
+      prefix: --cutoff
 
   vcf:
     type: File
     inputBinding:
       position: 2
 
+  tumorID:
+    type: string?
+    default: TUMOR
+    inputBinding:
+      prefix: --tumor
+
+  normalID:
+    type: string?
+    default: NORMAL
+    inputBinding:
+      prefix: --normal
+
 outputs:
   output_vcf:
     type: File
     outputBinding:
-      glob: output.vcf
+      glob: $(inputs.output_name)

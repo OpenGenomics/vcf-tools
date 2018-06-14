@@ -24,6 +24,7 @@ inputs:
 
   cutoff:
     type: int?
+    default: 3
     inputBinding:
       prefix: --cutoff
 

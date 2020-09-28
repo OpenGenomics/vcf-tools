@@ -1,3 +1,4 @@
+*.json
 *.vcf
 cwltest.sh
 cwltest.sbtch
